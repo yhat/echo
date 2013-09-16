@@ -1,0 +1,14 @@
+description "Simple echo service"
+
+#installing node to the container
+build script
+  add-apt-repository -y ppa:chris-lea/node.js
+  apt-get -y update
+  apt-get -y install --force-yes nodejs
+end script
+
+#use npm to get current, then start
+run script
+  npm install
+  npm start
+end script
