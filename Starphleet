@@ -1,6 +1,7 @@
 description "Simple echo service"
 
-#installing node to the container
+#installing node to a container, this part is only redone if the text
+#inside the script blocks changes between version
 build script
   apt-get -y install --force-yes git curl apt-transport-https lsof
   apt-get -y install --force-yes software-properties-common
@@ -11,7 +12,14 @@ build script
 end script
 
 #use npm to get current, then start
+#this part is run each time a service starts
 run script
   npm install
   npm start
 end script
+
+#this is a health check, simply coming back with a 200 is a pass
+#starphleet won't mount your service and roll an upgrade unless this passes
+#it is run pointed at the container, which will be resolved to the correct
+#IP address
+healthcheck http://container:3000/
