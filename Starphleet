@@ -2,6 +2,9 @@ description "Simple echo service"
 
 #installing node to the container
 build script
+  apt-get -y install --force-yes git curl apt-transport-https lsof
+  apt-get -y install --force-yes software-properties-common
+  apt-get -y install --force-yes python g++ make git
   add-apt-repository -y ppa:chris-lea/node.js
   apt-get -y update
   apt-get -y install --force-yes nodejs
