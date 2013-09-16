@@ -23,3 +23,4 @@ end script
 #it is run pointed at the container, which will be resolved to the correct
 #IP address
 healthcheck http://container:3000/
+
