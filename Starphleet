@@ -3,8 +3,6 @@ description "Simple echo service"
 #installing node to a container, this part is only redone if the text
 #inside the script blocks changes between version, which saves build time
 build script
-  apt-get -y install --force-yes git curl
-  apt-get -y install --force-yes software-properties-common python g++ make
   add-apt-repository -y ppa:chris-lea/node.js
   apt-get -y update
   apt-get -y install --force-yes nodejs
