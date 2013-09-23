@@ -6,12 +6,12 @@ build script
   add-apt-repository -y ppa:chris-lea/node.js
   apt-get -y update
   apt-get -y install --force-yes nodejs
+  npm install
 end script
 
 #use npm to get current, then start
 #this part is run each time a service starts
 run script
-  npm install
   npm start
 end script
 
