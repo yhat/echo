@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-app.get('*', function(request, response) {
+app.get('/*', function(request, response) {
   response.end(request.path.slice(1));
 });
 
