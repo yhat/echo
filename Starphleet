@@ -1,8 +1,0 @@
-description "Simple echo service"
-
-#this is a health check, simply coming back with a 200 is a pass
-#starphleet won't mount your service and roll an upgrade unless this passes
-#it is run pointed at the container, which will be resolved to the correct
-#IP address
-healthcheck http://container:3000/
-
