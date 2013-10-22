@@ -2,11 +2,13 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
+require("shellscript").globalize();
+
 app.get('/.test', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 app.get('/*', function(request, response) {
-  response.end(request.path.slice(1));
+  response.end($("echo", request.path.slice(1)));
 });
 io.sockets.on('connection', function (socket) {
   socket.on('echo', function (data) {
