@@ -10,8 +10,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~3.3.7",
-    "socket.io": "~0.9.16",
-    "shellscript": "~0.1.0"
+    "ws": "~0.4.31"
   },
   "engines": {
     "node": "0.10.20"

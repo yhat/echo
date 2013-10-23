@@ -1,21 +1,23 @@
 var app = require('express')();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-
-require("shellscript").globalize();
+var server = require('http').createServer(app)
+   , WSS = require('ws').Server;
 
 app.get('/.test', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 app.get('/*', function(request, response) {
-  response.end($("echo", request.path.slice(1)));
-});
-io.sockets.on('connection', function (socket) {
-  socket.on('echo', function (data) {
-    socket.emit('echo', data);
-    console.log(data);
-  });
+  response.end(request.path.slice(1));
 });
 var port = process.env.PORT || 3000;
 server.listen(port);
 console.log('Listening on ' + port);
+
+var wss = new WSS({server: server});
+
+wss.on('connection', function (socket) {
+  console.log("new connection");
+  socket.on('message', function (data) {
+    socket.send(data);
+    console.log(data);
+  });
+});
