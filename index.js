@@ -1,24 +1,12 @@
+process.stdin.setEncoding('utf8');
 
-var app = require('express')();
-var server = require('http').createServer(app)
-   , WSS = require('ws').Server;
-
-app.get('/.test', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+process.stdin.on('readable', function() {
+  var chunk = process.stdin.read();
+  if (chunk !== null) {
+    process.stdout.write('data: ' + chunk);
+  }
 });
-app.get('/*', function(request, response) {
-  response.end(request.path.slice(1));
-});
-var port = process.env.PORT || 3000;
-server.listen(port);
-console.log('Listening on ' + port);
 
-var wss = new WSS({server: server});
-
-wss.on('connection', function (socket) {
-  console.log("new connection");
-  socket.on('message', function (data) {
-    socket.send(data);
-    console.log(data);
-  });
+process.stdin.on('end', function() {
+  process.stdout.write('end');
 });
