@@ -22,3 +22,4 @@ ws.onmessage = function(e) {
 };
 ws.send("hi");
 ```
+hi
